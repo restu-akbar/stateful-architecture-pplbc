@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Portal Pendaftaran Pegawai</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #0078d4, #00b4d8);
+        min-height: 100vh;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        padding: 20px;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 500px;
+
+        background: white;
+
+        border-radius: 20px;
+
+        padding: 35px;
+
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .title {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .title h1 {
+        color: #222;
+        margin-bottom: 10px;
+      }
+
+      .title p {
+        color: #666;
+        font-size: 14px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      input[type="text"],
+      input[type="email"] {
+        width: 100%;
+        padding: 14px;
+
+        border: 1px solid #ccc;
+        border-radius: 10px;
+
+        font-size: 14px;
+
+        transition: 0.3s;
+      }
+
+      input[type="text"]:focus,
+      input[type="email"]:focus {
+        outline: none;
+        border-color: #0078d4;
+        box-shadow: 0 0 5px rgba(0, 120, 212, 0.4);
+      }
+
+      .upload-box {
+        border: 2px dashed #0078d4;
+        border-radius: 12px;
+
+        padding: 30px;
+        text-align: center;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+        background: #f9fcff;
+      }
+
+      .upload-box:hover {
+        background: #eef7ff;
+      }
+
+      .upload-box input {
+        display: none;
+      }
+
+      .upload-text {
+        color: #0078d4;
+        font-weight: bold;
+      }
+
+      .preview {
+        margin-top: 20px;
+        display: none;
+      }
+
+      .preview img {
+        width: 100%;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+      }
+
+      button {
+        width: 100%;
+
+        padding: 15px;
+
+        border: none;
+        border-radius: 12px;
+
+        background: #0078d4;
+        color: white;
+
+        font-size: 16px;
+        font-weight: bold;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #005fa3;
+      }
+
+      .footer {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 12px;
+        color: #777;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="title">
+        <h1>Portal Pendaftaran Pegawai</h1>
+        <p>Upload data dan dokumen pelamar</p>
+      </div>
+
+      <form action="/submit" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label>Nama Lengkap</label>
+
+          <input
+            type="text"
+            name="nama"
+            placeholder="Masukkan nama lengkap"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Alamat Email</label>
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Masukkan email"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Upload KTP / CV</label>
+
+          <label class="upload-box">
+            <span class="upload-text"> Klik untuk upload file </span>
+
+            <input
+              type="file"
+              name="ktp"
+              id="fileInput"
+              accept="image/*"
+              required
+            />
+          </label>
+
+          <div class="preview" id="preview">
+            <img id="previewImg" />
+          </div>
+        </div>
+
+        <button type="submit">Submit Pendaftaran</button>
+      </form>
+
+      <div class="footer">
+        Cloud Computing • Azure Blob Storage • PostgreSQL
+      </div>
+    </div>
+
+    <script>
+      const fileInput = document.getElementById("fileInput");
+
+      const preview = document.getElementById("preview");
+
+      const previewImg = document.getElementById("previewImg");
+
+      fileInput.addEventListener("change", function (event) {
+        const file = event.target.files[0];
+
+        if (file) {
+          preview.style.display = "block";
+
+          previewImg.src = URL.createObjectURL(file);
+        }
+      });
+    </script>
+  </body>
+</html>
